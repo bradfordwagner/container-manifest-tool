@@ -34,6 +34,8 @@ spec:
             value: "{{ item.tag }}"
           - name: upstream_repo_name_override
             value: "{{ item.name_override }}"
+          - name: runtime_platforms
+            value: "{{ item.runtime_platforms }}"
         withItems:
-        - { repo: 'mplatform/manifest-tool', tag: 'v1.0.3', name_override: manifest_tool }
+        - { repo: 'mplatform/manifest-tool', tag: 'v1.0.3', name_override: manifest_tool, runtime_platforms: [linux/amd64, linux/arm, linux/arm64, linux/ppc64le, linux/s390x, windows/amd64] }
 
