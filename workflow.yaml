@@ -3,6 +3,8 @@ kind: Workflow
 metadata:
   generateName: manifest-tool-image-
 spec:
+  podGC:
+    strategy: OnPodSuccess # delete pods when workflow is successful
   entrypoint: manifest-tool-image
   arguments:
     parameters:
@@ -36,6 +38,10 @@ spec:
             value: "{{ item.name_override }}"
           - name: runtime_platforms
             value: "{{ item.runtime_platforms }}"
+          - name: tag_suffix
+            value: "-{{ item.name_override }}-{{ item.tag }}"
         withItems:
+        - { repo: 'mplatform/manifest-tool', tag: 'v2.0.3', name_override: manifest_tool, runtime_platforms: [linux/amd64, linux/arm, linux/arm64, linux/ppc64le, linux/s390x, windows/amd64] }
+        - { repo: 'mplatform/manifest-tool', tag: 'v2.0.0', name_override: manifest_tool, runtime_platforms: [linux/amd64, linux/arm, linux/arm64, linux/ppc64le, linux/s390x, windows/amd64] }
         - { repo: 'mplatform/manifest-tool', tag: 'v1.0.3', name_override: manifest_tool, runtime_platforms: [linux/amd64, linux/arm, linux/arm64, linux/ppc64le, linux/s390x, windows/amd64] }
 
