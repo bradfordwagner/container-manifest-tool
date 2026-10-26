@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>bradfordwagner/renovate:argo-workflow"
+  ],
+  "packageRules": [
+    {
+      "description": "The v1, v2.0.0 and v2.0.3 mirrors are kept on purpose; bumping would collapse them into duplicates",
+      "matchFileNames": [
+        "workflow.yaml"
+      ],
+      "enabled": false
+    }
+  ]
+}
